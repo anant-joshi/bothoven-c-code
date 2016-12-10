@@ -371,7 +371,45 @@ char is_a_node(){
 	}
 }
 
+/*
+	Function Name:	follow_line
+	Input:			No parameters, ADC input from the White line sensors
+	Output: 		None. (Moves motors)
+	Logic:			If the central white line sensor is high, then the robot is on the black line
+					if the left sensor is high, then the robot must curve left
+					if the right sensor is high, then the robot must curve right
+	Example Call:	follow_line() (It is just an imperative statement)
+*/
+void follow_line(){
+	Left_white_line = ADC_Conversion(3);	//Getting data of Left WL Sensor
+	Center_white_line = ADC_Conversion(2);	//Getting data of Center WL Sensor
+	Right_white_line = ADC_Conversion(1);	//Getting data of Right WL Sensor				
 
+	if(Center_white_line > 0x28)
+	{
+			forward();
+			velocity(150,150);
+	}
+
+		if((Left_white_line > 0x28))
+		{
+			forward();
+			velocity(130,50);
+		}
+
+		if((Right_white_line > 0x28))
+		{
+			forward();
+			velocity(50,130);
+		}
+
+		// TODO: Check later
+		// if(Center_white_line>0x28 && Left_white_line>0x28 && Right_white_line>0x28)
+		// {
+		// 	forward();
+		// 	velocity(0,0);
+		// }
+}
 
 
 int main(void)
