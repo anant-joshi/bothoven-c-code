@@ -358,17 +358,20 @@ void init_grid_of_nodes(){
 					give a false value, then the current position is a node
 	Example Call:	is_a_node() (Generally in a conditional statement)	
 */
+
 char is_a_node(){
 	left_white_line = ADC_Conversion(3);
 	centre_white_line = ADC_Conversion(2);
 	right_white_line = ADC_Conversion(1);
 
-	if(centre_white_line < 0x28 && (right_white_line < 0x28 || left_white_line < 0x28)){
+	if(centre_white_line > 0x28 && (right_white_line > 0x28 || left_white_line > 0x28)){
 		return 1;
 	}else{
 		return 0;
 	}
 }
+
+
 
 
 int main(void)
