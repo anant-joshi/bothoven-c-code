@@ -53,6 +53,21 @@ void buzzer_off (void)
 	Start definitons for motion
 */
 
+//Function To Print Sesor Values At Desired Row And Coloumn Location on LCD
+void print_sensor(char row, char coloumn,unsigned char channel)
+{
+	
+	ADC_Value = ADC_Conversion(channel);
+	lcd_print(row, coloumn, ADC_Value, 3);
+}
+
+//Function for velocity control
+void velocity (unsigned char left_motor, unsigned char right_motor)
+{
+	OCR5AL = (unsigned char)left_motor;
+	OCR5BL = (unsigned char)right_motor;
+}
+
 void motion_pin_config (void)
 {
  DDRA = DDRA | 0x0F; //set direction of the PORTA 3 to PORTA 0 pins as output
