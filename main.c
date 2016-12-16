@@ -9,6 +9,7 @@
 */
 #define F_CPU 14746500L
 #define NUM_NODES 48
+#define BUF_SIZE 100
 /*
 	All imports here
 */
@@ -16,6 +17,34 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
+
+typedef struct queue_elem{
+	int data;
+	int weight;
+}queue_elem;
+int q_size = 0;
+
+queue_elem* new_Element(int value, int weight){
+	queue_elem *q = malloc(sizeof(queue_elem));
+	q->data = value;
+	q->weight = weight;
+	return q;
+}
+
+queue_elem* priority_queue[BUF_SIZE];
+int parent(int index){
+	return (index)?(index-1)/2:0;
+}
+int left_child(int index){
+	return index*2+1;
+}
+int right_child(int index){
+	return index*2+2;
+}
+int insert_queue(queue_elem *qe){
+	priority_queue[q_size] = qe;
+}
+
 
 int grid_of_nodes[48][48];
 
