@@ -16,7 +16,7 @@ typedef struct{
 }both_node;
 
 
-both_node[NUM_GRAPH_NODES]; //array of struct nodes
+both_node bothoven_nodes[NUM_GRAPH_NODES]; //array of struct nodes
 							//nodes are according to their indices
 
 char grid_of_nodes[NUM_GRAPH_NODES][NUM_GRAPH_NODES];
