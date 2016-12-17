@@ -5,12 +5,35 @@
 #define NUM_GRAPH_NODES 48
 #endif
 
+#ifndef MAX_NEIGHBOURS
+#define MAX_NEIGHBOURS 4
+#endif
+
 typedef struct{
 	int x;
 	int y;
-}coord_node;
+	int neighbours[MAX_NEIGHBOURS];
+}both_node;
+
+
+both_node[NUM_GRAPH_NODES]; //array of struct nodes
+							//nodes are according to their indices
 
 char grid_of_nodes[NUM_GRAPH_NODES][NUM_GRAPH_NODES];
+
+init_both_node(int index, int x, int y){
+	int i, k = 0;
+	both_node[index].x = x;
+	both_node[index].y = y;
+	for(i = 0; i< MAX_NEIGHBOURS; i++){
+		both_node[index].neighbours[i] = -1;
+	}
+	for(i = 0; i < NUM_GRAPH_NODES; i++){
+		if(grid_of_nodes[index][i]){
+			both_node[index].neighbours[k++] = i;
+		}
+	}
+}
 
 
 
