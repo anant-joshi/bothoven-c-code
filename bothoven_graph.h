@@ -10,13 +10,13 @@
 #endif
 
 typedef struct{
-	int x;
-	int y;
+	float x;
+	float y;
 	int neighbours[MAX_NEIGHBOURS];
 }both_node;
 
 
-bothoven_nodes[NUM_GRAPH_NODES]; //array of struct nodes
+both_node bothoven_nodes[NUM_GRAPH_NODES]; //array of struct nodes
 						//nodes are according to their indices
 void add_both_nodeinfo()
 {
@@ -80,7 +80,7 @@ void add_both_nodeinfo()
 
 char grid_of_nodes[NUM_GRAPH_NODES][NUM_GRAPH_NODES];
 
-void init_both_node(int index, int x, int y){
+void init_both_node(int index, float x, float y){
 	int i, k = 0;
 	both_node[index].x = x;
 	both_node[index].y = y;
