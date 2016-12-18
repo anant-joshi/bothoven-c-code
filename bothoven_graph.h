@@ -16,12 +16,71 @@ typedef struct{
 }both_node;
 
 
-both_node bothoven_nodes[NUM_GRAPH_NODES]; //array of struct nodes
-							//nodes are according to their indices
+bothoven_nodes[NUM_GRAPH_NODES]; //array of struct nodes
+						//nodes are according to their indices
+void add_both_nodeinfo()
+{
+	init_both_node(0,0,-7);
+	init_both_node(1,-1,-6);
+	init_both_node(2,-2,-5);
+	init_both_node(3,-3,-4);
+	init_both_node(4,-4,-3);
+	init_both_node(5,-5,-2);
+	init_both_node(6,-6,0);
+	init_both_node(7,-5,2);
+	init_both_node(8,-4,3);
+	init_both_node(9,-3,4);
+	init_both_node(10,-2,5);
+	init_both_node(11,-1,-6);
+
+	init_both_node(12,0,7);
+	init_both_node(13,1,6);
+	init_both_node(14,2,5);
+	init_both_node(15,3,4);
+	init_both_node(16,4,3);
+	init_both_node(17,5,2);
+	init_both_node(18,6,0);
+	init_both_node(19,5,-2);
+	init_both_node(20,4,-3);
+	init_both_node(21,3,-4);
+	init_both_node(22,2,-5);
+	init_both_node(23,1,-6);
+
+	init_both_node(41,1,-4);
+	init_both_node(24,0,-3);
+	init_both_node(25,-1,-4);
+	init_both_node(26,-2,-3);
+	init_both_node(27,-2,-2);
+	init_both_node(43,-1,-1);
+	init_both_node(42,0,-2);
+
+	init_both_node(28,-3,-1);
+	init_both_node(6,-6,0);
+	init_both_node(29,-3,-1);
+	init_both_node(30,-2,2);
+
+	init_both_node(44,-1,1);
+	init_both_node(45,0,2);
+	init_both_node(33,0,3);
+	init_both_node(32,-1,4);
+	init_both_node(31,-2,3);
+
+	init_both_node(34,1,4);
+	init_both_node(14,2,5);
+	init_both_node(35,2,3);
+	init_both_node(36,2,2);
+
+	init_both_node(46,1,1);
+	init_both_node(47,1,-1);
+	init_both_node(39,2,-2);
+	init_both_node(38,3,-1);
+	init_both_node(37,3,1);
+	init_both_node(40,2,-3);
+}
 
 char grid_of_nodes[NUM_GRAPH_NODES][NUM_GRAPH_NODES];
 
-init_both_node(int index, int x, int y){
+void init_both_node(int index, int x, int y){
 	int i, k = 0;
 	both_node[index].x = x;
 	both_node[index].y = y;
