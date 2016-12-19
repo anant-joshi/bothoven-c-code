@@ -122,6 +122,7 @@ void init_devices (void)
 }
 
 void move_to(int j){
+	lcd_string("Entered");
 	if(sp_parent[j] == -1 || flag_to_restart == 1){
 		return;
 	}else{
@@ -131,6 +132,8 @@ void move_to(int j){
 		curr_node_pos = j;
 		num_turn_paths = path_number(curr_node_pos, prev_node_pos, successor_arr[j]);
 		nudge_ahead();
+		lcd_set_4bit();
+		lcd_string("Nudge");
 		turn_to_path(num_turn_paths);
 		if(!handle_obstacle(curr_node_pos, successor_arr[j], num_turn_paths)){
 			follow_black_line();
@@ -156,9 +159,12 @@ int main(void)
 		lcd_print(1,1,destination,2);
     	for(j = 0; j< NUM_GRAPH_NODES; j++)	successor_arr[j] = -1;
     	move_to(destination);
+		lcd_string("Move to destination");
     	if(!flag_to_restart){
     		i++;
+			lcd_string("Entered flag_to_restart");
     		curr_node_pos = destination;
+			lcd_string("Gone to next node");
     		buzzer_on();
     		_delay_ms(500);
     		buzzer_off();
