@@ -130,6 +130,7 @@ void move_to(int j){
 		if(flag_to_restart) return;
 		curr_node_pos = j;
 		num_turn_paths = path_number(curr_node_pos, prev_node_pos, successor_arr[j]);
+		nudge_ahead();
 		turn_to_path(num_turn_paths);
 		if(!handle_obstacle(curr_node_pos, successor_arr[j], num_turn_paths)){
 			follow_black_line();
@@ -152,6 +153,7 @@ int main(void)
 	lcd_string("Hello");
     while(mnp_array[i] != -1){
     	destination = optimum_node_from_mnp(mnp_array[i]);
+		lcd_print(1,1,destination,2);
     	for(j = 0; j< NUM_GRAPH_NODES; j++)	successor_arr[j] = -1;
     	move_to(destination);
     	if(!flag_to_restart){
