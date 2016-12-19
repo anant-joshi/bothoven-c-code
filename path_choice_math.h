@@ -63,11 +63,11 @@ int path_number(int curr_index, int prev_index, int next_index){
 	}
 	for(i = 0; i<j; i++){
 		if(theta<0){
-			if(angles[i]<0 && angles[i]>theta && fabs(theta-angles[i])>0.001){
+			if(angles[i]<0 && (angles[i]>theta || fabs(theta-angles[i])<0.001)){
 				m--;
 			}
 		}else{
-			if(angles[i]>=0 && angles[i]<theta && fabs(theta-angles[i])>0.001){
+			if(angles[i]>=0 && (angles[i]<theta || fabs(theta-angles[i])<0.001)){
 				m++;
 			}
 		}

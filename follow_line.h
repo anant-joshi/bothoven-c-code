@@ -7,6 +7,10 @@
 	#define BLACK_THRESHOLD 0x14
 	#endif
 
+	#ifndef NUDGE_AHEAD_DELAY
+	#define NUDGE_AHEAD_DELAY 10
+	#endif
+
 char bot_is_on_node(){
 	left = ADC_Conversion(3);
 	right = ADC_Conversion(2);
@@ -52,6 +56,17 @@ void follow_black_line(){
 		_delay_ms(2);	
 	}
 	velocity(0,0);
+}
+
+void nudge_ahead(){
+	forward();
+	velocity(150,150);
+	_delay_ms(NUDGE_AHEAD_DELAY);
+	velocity(0,0);
+}
+
+void turn_to_path(int path_number){
+	
 }
 
 #endif
