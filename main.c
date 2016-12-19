@@ -114,6 +114,7 @@ void move_to(int j){
 	}else{
 		successor_arr[sp_parent[j]] = j;
 		move_to(sp_parent[j]);
+		if(flag_to_restart) return;
 		curr_node_pos = j;
 		num_turn_paths = path_number(curr_node_pos, prev_node_pos, successor_arr[j]);
 		turn_to_path(num_paths);
