@@ -13,7 +13,7 @@
 
 char handle_obstacle(int curr, int next, int num_paths){    //update global next
 	unsigned char analog, distance;
-	char sensor = picksensor(curr,next);
+	char sensor = pick_sensor(curr,next);
 	if(sensor == 1){
 		analog = ADC_Conversion(11); 		// add params
 		distance = Sharp_GP2D12_estimation(analog);
