@@ -8,15 +8,20 @@
 	All defined macros here
 */
 #define F_CPU 14746500L
-#define NUM_NODES 48
-#define BUF_SIZE 100
 /*
 	All imports here
 */
-
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
+#include <math.h>
+#include "lcd.h"
+#include "analog_to_digital.h"
+#include "bothoven_graph.h"
+#include "dijkstras_algo.h"
+#include "follow_line.h"
+#include "mnp_positions.h"
+#include "motor_movement.h"
 
 /*
 	Start Definitions for buzzer
@@ -68,42 +73,12 @@ void MOSFET_switch_config (void)
  PORTG = PORTG & 0xFB; //set PORTG 2 pin to 0
 }
 
-void turn_on_all_proxy_sensors (void) // turn on Sharp 2, 3, 4, red LED of the white line sensors
-									  // Sharp 1, 5 and IR proximity sensor
-{
- PORTH = PORTH & 0xF3; //set PORTH 3 and PORTH 1 pins to 0
- PORTG = PORTG & 0xFB; //set PORTG 2 pin to 0
-}
-
-void turn_off_all_proxy_sensors (void) // turn off Sharp 2, 3, 4, red LED of the white line sensors
-									  // Sharp 1, 5 and IR proximity sensor
-{
- PORTH = PORTH | 0x0C; //set PORTH 3 and PORTH 1 pins to 1
- PORTG = PORTG | 0x04; //set PORTG 2 pin to 1
-}
-
-unsigned int Sharp_GP2D12_estimation(unsigned char adc_reading)
-{
-	float distance;
-	unsigned int distanceInt;
-	distance = (int)(10.00*(2799.6*(1.00/(pow(adc_reading,1.1546)))));
-	distanceInt = (int)distance;
-	if(distanceInt>800)
-	{
-		distanceInt=800;
-	}
-	return distanceInt;
-}
-
-/*
-	End SHARP, proximity sensors
-*/
-
 /*
 	Initialize ports
 */
 void port_init (void)
 {
+	lcd_port_config();
 	buzzer_pin_config();
 	motion_pin_config();
 	adc_pin_config();

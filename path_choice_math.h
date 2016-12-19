@@ -42,7 +42,7 @@ float get_angle(both_node node){
 
 	Example Call:	path_number(<curr_index>,<prev_index>,<next_index>);
 */
-
+ 
 int path_number(int curr_index, int prev_index, int next_index){
 	int i,j, m = 0;
 	both_node neighbours[MAX_NEIGHBOURS], selected;

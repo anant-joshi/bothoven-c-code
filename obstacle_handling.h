@@ -18,4 +18,5 @@ char handle_obstacle(int prox, int prev, int next, int num_paths){    //update g
 	return 0;
 }
 
+
 #endif
