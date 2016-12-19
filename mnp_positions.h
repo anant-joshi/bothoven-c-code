@@ -8,6 +8,7 @@
 	#ifndef NUM_MNP_NODES
 	#define NUM_MNP_NODES 33
 	#endif
+#include "dijsktras_algo.h"
 
 typedef struct{
 	int node_indexes[MAX_MNP_NODE_VALUES]
@@ -24,6 +25,21 @@ void add_mnp_info(int mnp, int arr[MAX_MNP_NODE_VALUES]){
 		for(i = 0; i< MAX_MNP_NODE_VALUES; i++)
 			note_positions[mnp].node_indexes[i] = arr[i];
 	}
+}
+
+int optimum_node_from_mnp(int mnp){
+	int indexes[];
+	int min_dist_index,i, min_dist;
+	mnp_node node = note_positions[mnp];
+	indexes = node.node_indexes;
+	min_dist = 5000;
+	for(i = 0; i<NUM_MNP_NODES && indexes[i]!=-1; i++){
+		if(dist[indexes[i]]<min_dist){
+			min_dist = dist[indexes[i]];
+			min_dist_index = indexes[i];
+		}
+	}
+	return min_dist_index;
 }
 
 void init_mnp(){
