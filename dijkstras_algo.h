@@ -26,7 +26,7 @@ void printPath(int j){
     if (sp_parent[j]==-1)
         return;
  
-    printPath(parent, parent[j]);
+    printPath(parent[j]);
 	//do stuff here
 	//move_to(j) (from curr_position)
 	//TODO: add curr_pos as a global variable indicating the robot's current position
