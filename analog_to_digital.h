@@ -3,6 +3,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
+#include <bothoven_graph.h>
 
 #include <math.h> //included to support power function
 #include "lcd.c"
@@ -78,6 +79,12 @@ void print_sensor(char row, char coloumn,unsigned char channel)
 {
 	ADC_Value = ADC_Conversion(channel);
 	lcd_print(row, coloumn, ADC_Value, 3);
+}
+
+char pick_sensor(int curr, int next){
+	if(grid_of_nodes[curr][next] == 2)
+		return 1;						//Sharp sensor
+	else return 0;					   //IR sensor
 }
 
 #endif
