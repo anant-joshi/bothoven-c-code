@@ -12,6 +12,7 @@
 	#endif
 
 char bot_is_on_node(){
+	char left, right, centre;
 	left = ADC_Conversion(3);
 	right = ADC_Conversion(2);
 	centre = ADC_Conversion(1);
@@ -19,6 +20,7 @@ char bot_is_on_node(){
 }
 
 char bot_is_on_line(){
+	char left, right, centre;
 	left = ADC_Conversion(3);
 	right = ADC_Conversion(2);
 	centre = ADC_Conversion(1);
@@ -26,6 +28,7 @@ char bot_is_on_line(){
 }
 
 char bot_is_veering_left(){
+	char left, right, centre;
 	left = ADC_Conversion(3);
 	right = ADC_Conversion(2);
 	centre = ADC_Conversion(1);
@@ -34,6 +37,7 @@ char bot_is_veering_left(){
 }
 
 char bot_is_veering_right(){
+	char left, right, centre;
 	left = ADC_Conversion(3);
 	right = ADC_Conversion(2);
 	centre = ADC_Conversion(1);
@@ -47,7 +51,7 @@ void follow_black_line(){
 			forward();
 			velocity(150,150);
 		}else if(bot_is_veering_left()){
-			forward()
+			forward();
 			velocity(130,50);
 		}else if(bot_is_veering_right()){
 			forward();

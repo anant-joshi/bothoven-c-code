@@ -16,8 +16,25 @@ typedef struct{
 }both_node;
 
 
+char grid_of_nodes[NUM_GRAPH_NODES][NUM_GRAPH_NODES];
+
+
 both_node bothoven_nodes[NUM_GRAPH_NODES]; //array of struct nodes
 						//nodes are according to their indices
+						
+void init_both_node(int index, float x, float y){
+	int i, k = 0;
+	bothoven_nodes[index].x = x;
+	bothoven_nodes[index].y = y;
+	for(i = 0; i< MAX_NEIGHBOURS; i++){
+		bothoven_nodes[index].neighbours[i] = -1;
+	}
+	for(i = 0; i < NUM_GRAPH_NODES; i++){
+		if(grid_of_nodes[index][i]){
+			bothoven_nodes[index].neighbours[k++] = i;
+		}
+	}
+}
 void add_both_nodeinfo()
 {
 	init_both_node(0,0,-7);
@@ -78,21 +95,7 @@ void add_both_nodeinfo()
 	init_both_node(40,2,-3);
 }
 
-char grid_of_nodes[NUM_GRAPH_NODES][NUM_GRAPH_NODES];
 
-void init_both_node(int index, float x, float y){
-	int i, k = 0;
-	both_node[index].x = x;
-	both_node[index].y = y;
-	for(i = 0; i< MAX_NEIGHBOURS; i++){
-		both_node[index].neighbours[i] = -1;
-	}
-	for(i = 0; i < NUM_GRAPH_NODES; i++){
-		if(grid_of_nodes[index][i]){
-			both_node[index].neighbours[k++] = i;
-		}
-	}
-}
 
 
 

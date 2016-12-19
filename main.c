@@ -7,7 +7,6 @@
 /*
 	All defined macros here
 */
-#define F_CPU 14746500L
 /*
 	All imports here
 */
@@ -22,9 +21,11 @@
 #include "follow_line.h"
 #include "mnp_positions.h"
 #include "motor_movement.h"
+#include "obstacle_handling.h"
+#include "path_choice_math.h"
 
 int flag_to_restart = 0;
-int curr_node_pos = 0, prev_node_pos 23, next_node_pos;
+int curr_node_pos = 0, prev_node_pos= 23, next_node_pos;
 int num_turn_paths;
 int successor_arr[NUM_GRAPH_NODES];
 
@@ -102,22 +103,34 @@ void init_devices (void)
 {
 	cli(); //Clears the global interrupts
 	port_init();
+	lcd_init();
+	lcd_string("Computing");
+	_delay_ms(10);
 	adc_init();
+	lcd_set_4bit();
+	_delay_ms(10);
+	lcd_string("adc");
 	init_graph();
+	lcd_set_4bit();
+	_delay_ms(10);
+	lcd_string("Graph done");
 	init_mnp();
+	lcd_set_4bit();
+	_delay_ms(10);
+	lcd_string("mnp done");
 	sei(); //Enables the global interrupts
 }
 
 void move_to(int j){
 	if(sp_parent[j] == -1 || flag_to_restart == 1){
-		return
+		return;
 	}else{
 		successor_arr[sp_parent[j]] = j;
 		move_to(sp_parent[j]);
 		if(flag_to_restart) return;
 		curr_node_pos = j;
 		num_turn_paths = path_number(curr_node_pos, prev_node_pos, successor_arr[j]);
-		turn_to_path(num_paths);
+		turn_to_path(num_turn_paths);
 		if(!handle_obstacle(curr_node_pos, successor_arr[j], num_turn_paths)){
 			follow_black_line();
 			flag_to_restart = 0;
@@ -131,10 +144,12 @@ void move_to(int j){
 
 int main(void)
 {    
-    int mnp_array[] = {};
+    int mnp_array[] = {0,23,32,29,28,6,25,30,-1};
     int i = 0, j;
     int destination;
     init_devices();
+	lcd_set_4bit();
+	lcd_string("Hello");
     while(mnp_array[i] != -1){
     	destination = optimum_node_from_mnp(mnp_array[i]);
     	for(j = 0; j< NUM_GRAPH_NODES; j++)	successor_arr[j] = -1;
@@ -143,9 +158,9 @@ int main(void)
     		i++;
     		curr_node_pos = destination;
     		buzzer_on();
-    		_delay_ms_(500);
+    		_delay_ms(500);
     		buzzer_off();
-    		_delay_ms_(500);
+    		_delay_ms(500);
     	}else{
     		flag_to_restart = 0;
     		continue;

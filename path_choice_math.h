@@ -23,7 +23,7 @@ both_node coordinates_transform(int curr_node_index, int prev_node_index, int gi
 	Y = -(B*(x-a0)+A*(y-b0))/S;
 	new_node.x = X;
 	new_node.y = Y;
-	new_node.neighbours = NULL;
+	return new_node;
 }
 
 float get_angle(both_node node){

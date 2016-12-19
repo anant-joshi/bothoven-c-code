@@ -6,7 +6,7 @@
 #include "bothoven_graph.h"
 
 #include <math.h> //included to support power function
-#include "lcd.c"
+#include "lcd.h"
 
 unsigned char ADC_Conversion(unsigned char);
 unsigned char ADC_Value;

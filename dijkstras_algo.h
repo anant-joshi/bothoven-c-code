@@ -6,7 +6,7 @@
 
 int sp_parent[NUM_GRAPH_NODES];
 int dist[NUM_GRAPH_NODES];
-char sptSet[NUM_GRAPH_NODES]
+char sptSet[NUM_GRAPH_NODES];
 
 int min_graph_distance(){
     // Initialize min value
@@ -26,7 +26,7 @@ void printPath(int j){
     if (sp_parent[j]==-1)
         return;
  
-    printPath(parent[j]);
+    printPath(sp_parent[j]);
 	//do stuff here
 	//move_to(j) (from curr_position)
 	//TODO: add curr_pos as a global variable indicating the robot's current position
@@ -35,7 +35,7 @@ void printPath(int j){
 // Funtion that implements Dijkstra's single source shortest path
 // algorithm for a graph represented using adjacency matrix
 // representation
-void dijkstra(int graph[NUM_GRAPH_NODES][NUM_GRAPH_NODES], int src){
+void dijkstra(char graph[NUM_GRAPH_NODES][NUM_GRAPH_NODES], int src){
 	int i,u,v,count;
     //dist[NUM_GRAPH_NODES]; 
     // The output array. dist[i] will hold
@@ -47,7 +47,7 @@ void dijkstra(int graph[NUM_GRAPH_NODES][NUM_GRAPH_NODES], int src){
  
     // Initialize all distances as INFINITE and stpSet[] as false
     for (i = 0; i < NUM_GRAPH_NODES; i++){
-        sp_tree[0] = -1;
+        sp_parent[0] = -1;
         dist[i] = INT_MAX;
         sptSet[i] = 0;
     }
@@ -69,7 +69,7 @@ void dijkstra(int graph[NUM_GRAPH_NODES][NUM_GRAPH_NODES], int src){
         // picked vertex.
         for (v = 0; v < NUM_GRAPH_NODES; v++)
             if (!sptSet[v] && graph[u][v] &&  dist[u] + graph[u][v] < dist[v]){
-                sp_tree[v]  = u;
+					sp_parent[v]  = u;
                 dist[v] = dist[u] + graph[u][v];
             }  
     }

@@ -18,7 +18,7 @@ char handle_obstacle(int curr, int next, int num_paths){    //update global next
 		analog = ADC_Conversion(11); 		// add params
 		distance = Sharp_GP2D12_estimation(analog);
 		if(distance>SHARP_THRESHOLD){
-		remove_edge(curr, next)
+		remove_edge(curr, next);
 		dijkstra(grid_of_nodes, curr);
 		turn_to_path(-num_paths);
 		return 1;
@@ -29,7 +29,7 @@ char handle_obstacle(int curr, int next, int num_paths){    //update global next
 	else{
 		distance = ADC_Conversion(11);    //add params
 		if(distance<PROX_THRESHOLD){
-		remove_edge(curr, next)
+		remove_edge(curr, next);
 		dijkstra(grid_of_nodes, curr);
 		turn_to_path(-num_paths);
 		return 1;
