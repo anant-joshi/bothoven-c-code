@@ -66,7 +66,32 @@ void nudge_ahead(){
 }
 
 void turn_to_path(int path_number){
-	
+	int count = path_number;
+	int flag = 0;
+	if(path_number < 0){
+		while(count != 0){
+			right();
+			if(bot_is_on_line()){
+				if(flag == 0) count++;
+				flag = 1;
+			}else{
+				flag = 0;
+			}
+			_delay_ms(1);
+		}
+	}else{
+		while(count != 0){
+			left();
+			if(bot_is_on_line()){
+				if(flag == 0)	count--;
+				flag = 1;
+			}else{
+				flag = 0;
+			}
+			_delay_ms(1);
+		}
+	}
+	stop();
 }
 
 #endif
