@@ -138,9 +138,12 @@ int main(void)
     	destination = optimum_node_from_mnp(mnp_array[i]);
     	for(j = 0; j< NUM_GRAPH_NODES; j++)	successor_arr[j] = -1;
     	move_to(destination);
-    	if(flag_to_restart){
+    	if(!flag_to_restart){
     		i++;
     		curr_node_pos = destination;
+    	}else{
+    		flag_to_restart = 0;
+    		continue;
     	}
     }
     return 0;    	
