@@ -3,7 +3,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
-#include <bothoven_graph.h>
+#include "bothoven_graph.h"
 
 #include <math.h> //included to support power function
 #include "lcd.c"
