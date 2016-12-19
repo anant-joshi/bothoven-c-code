@@ -26,6 +26,7 @@
 int flag_to_restart = 0;
 int curr_node_pos = 0, prev_node_pos 23, next_node_pos;
 int num_turn_paths;
+int successor_arr[NUM_GRAPH_NODES];
 
 /*
 	Start Definitions for buzzer
@@ -111,10 +112,12 @@ void move_to(int j){
 	if(sp_parent[j] == -1 || flag_to_restart == 1){
 		return
 	}else{
+		successor_arr[sp_parent[j]] = j;
 		move_to(sp_parent[j]);
-		num_turn_paths = path_number(curr_node_pos, prev_node_pos, next_node_pos);
+		curr_node_pos = j;
+		num_turn_paths = path_number(curr_node_pos, prev_node_pos, successor_arr[j]);
 		turn_to_path(num_paths);
-		if(!handle_obstacle(ADC_Conversion(6), curr_node_pos, next_node_pos, num_turn_paths)){
+		if(!handle_obstacle(ADC_Conversion(6), curr_node_pos, successor_arr[j], num_turn_paths)){
 			follow_black_line();
 			flag_to_restart = 0;
 		}else{
@@ -127,6 +130,22 @@ void move_to(int j){
 
 int main(void)
 {
+
+    
+    int mnp_array[] = {};
+    int i = 0, j;
+    int destination;
     init_devices();
+    while(mnp_array[i] != -1){
+    	destination = optimum_node_from_mnp(mnp_array[i]);
+    	for(j = 0; j< NUM_GRAPH_NODES; j++)	successor_arr[j] = -1;
+    	move_to(destination);
+    	if(flag_to_restart){
+
+    	}else{
+    		i++;
+    		curr_node_pos = destination;
+    	}
+    }
 }
 
