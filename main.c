@@ -142,11 +142,17 @@ int main(void)
     	if(!flag_to_restart){
     		i++;
     		curr_node_pos = destination;
+    		buzzer_on();
+    		_delay_ms_(500);
+    		buzzer_off();
+    		_delay_ms_(500);
     	}else{
     		flag_to_restart = 0;
     		continue;
     	}
     }
+    while(1)
+    	buzzer_on();
     return 0;    	
 }
 
